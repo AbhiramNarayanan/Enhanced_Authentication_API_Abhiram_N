@@ -12,25 +12,24 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        // Check if user already exists in the database
+        // Checking if user already exists in the database
         let user = await User.findOne({ username: profile.id });
 
         if (!user) {
-          // If user doesn't exist, create a new user
+          // If user doesn't exist, created a new user
           user = new User({
             username: profile.id,
-            // You can also save additional user information from the profile object
-            // For example: name, email, profile picture, etc.
+           
           });
           await user.save();
         }
 
-        // Store the access token and refresh token in the user object
+        // Storing the access token and refresh token in the user object
         user.accessToken = accessToken;
         user.refreshToken = refreshToken;
         await user.save();
 
-        // Pass the user object to the next middleware
+        // Passing the user object to the next middleware
         done(null, user);
       } catch (error) {
         done(error);

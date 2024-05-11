@@ -10,7 +10,7 @@ router.get("/google", passport.authenticate("google", { scope: ["profile", "emai
 
 // Route for handling Google OAuth callback
 router.get("/google/callback", passport.authenticate("google", { failureRedirect: "/login" }), (req, res) => {
-  // Redirect user after successful authentication
+  // Redirecting user after successful authentication
   res.redirect("/profile");
 });
 

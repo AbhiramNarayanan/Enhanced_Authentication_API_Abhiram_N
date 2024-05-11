@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 
-// Update user profile
+// Updating user profile
 router.put("/", isAuthenticated, async (req, res) => {
   try {
     const userProfile = await UserProfile.findOne({ user: req.user._id });
@@ -45,7 +45,7 @@ router.get("/", isAuthenticated, async (req, res) => {
       return res.status(404).json({ message: "User profile not found" });
     }
 
-    // Check if the profile is public, the user is viewing their own profile, or the user is an admin
+    // Checking if the profile is public, the user is viewing their own profile, or the user is an admin
     if (userProfile.profileVisibility === "public" || req.user._id.toString() === userProfile.user.toString() || (req.user && req.user.role === "admin")) {
       return res.status(200).json(userProfile);
     } else {
@@ -65,7 +65,7 @@ router.get("/:username", isAuthenticated, async (req, res) => {
       return res.status(404).json({ message: "User profile not found" });
     }
 
-    // Check if the profile is public, the user is viewing their own profile, or the user is an admin
+    // Checking if the profile is public, the user is viewing their own profile, or the user is an admin
     if (userProfile.profileVisibility === "public" || req.user._id.toString() === userProfile.user.toString() || (req.user && req.user.role === "admin")) {
       return res.status(200).json(userProfile);
     } else {

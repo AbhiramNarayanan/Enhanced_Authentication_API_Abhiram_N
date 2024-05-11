@@ -16,11 +16,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false, // set to true if your using https
+    secure: false, 
     httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000 // 1 day in milliseconds
+    maxAge: 24 * 60 * 60 * 1000 
   },
-  store: MongoStore.create({ mongoUrl: mongoDBURL }) // use connect-mongo to persist sessions
+  store: MongoStore.create({ mongoUrl: mongoDBURL }) 
 }));
 
 app.use(passport.initialize());
@@ -29,7 +29,7 @@ app.use(passport.session());
 app.use(express.json());
 
 app.use(cors({
-  origin: 'http://localhost:3000', // replace with the origin of your frontend
+  origin: 'http://localhost:3000', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
